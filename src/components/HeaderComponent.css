@@ -9,11 +9,11 @@
     gap: 10px;
 }
 
-.header-logo {
+.header-container > img {
     max-height: 100%;
 }
 
-.header-text {
+.header-container > span {
     color: #141413;
     font-size: 1.7rem;
     text-transform: capitalize;
