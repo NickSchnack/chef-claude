@@ -1,8 +1,14 @@
 import "@components/AddIngredient.css"
 
-function AddIngredient() {
+type AddIngredientTypes = {
+    handleAddIngredient: (formData: FormData) => void;
+}
+
+function AddIngredient({
+    handleAddIngredient
+}: AddIngredientTypes) {
     return (
-        <form action={addIngredient} className="add-ingredient-form">
+        <form action={handleAddIngredient} className="add-ingredient-form">
             <input
                 type="text"
                 placeholder="e.g. oregano"
