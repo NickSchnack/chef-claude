@@ -12,6 +12,5 @@ export default defineConfig({
       '@components': path.resolve(__dirname, './src/components')
     }
   },
-  envDir: './src/environments',
-  plugins: [react()],
+  plugins: [react()]
 })

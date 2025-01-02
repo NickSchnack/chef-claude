@@ -20,10 +20,12 @@ function MainComponent() {
     }
 
     const getRecipe = () => {
-        const response = getRecipeFromChefClaude(ingredients);
-        console.log(response);
-        setRecipeMarkdown(response);
-        setRecipeShown(true);
+        //onst response = getRecipeFromChefClaude(ingredients);
+        console.log(`Key: ${import.meta.env.VITE_ANTHROPIC_API_KEY}`)
+
+        //console.log(response);
+        //setRecipeMarkdown(response);
+        //setRecipeShown(true);
     }
 
     return (
