@@ -3,10 +3,12 @@ import "./MainComponent.css"
 
 import AddIngredient from '@components/AddIngredient';
 import IngredientList from '@components/IngredientList';
-import Recipe from '@components/Recipe'
+import Recipe from '@components/Recipe';
+import { getRecipeFromChefClaude } from "@ai/ai.js";
 
 function MainComponent() {
-    const [ingredients, setIngredients] = useState(["chicken", "Oregano", "tomatoes"]);
+    const [ingredients, setIngredients] = useState(["all the main spices", "pasta", "ground beef", "tomato paste"]);
+    const [recipeMarkdown, setRecipeMarkdown] = useState(<p>Based on the ingredients you have available...</p>);
     const [recipeShown, setRecipeShown] = useState(false);
 
     const addIngredient = (formData: FormData) => {
@@ -18,7 +20,10 @@ function MainComponent() {
     }
 
     const getRecipe = () => {
-        setRecipeShown(true)
+        const response = getRecipeFromChefClaude(ingredients);
+        console.log(response);
+        setRecipeMarkdown(response);
+        setRecipeShown(true);
     }
 
     return (
@@ -30,7 +35,9 @@ function MainComponent() {
                 ingredients={ingredients}
                 handleGetRecipe={getRecipe}
             />
-            {(recipeShown) && <Recipe />}
+            {(recipeShown) && <Recipe
+                markdownText={recipeMarkdown}
+            />}
         </main>
     );
 }
