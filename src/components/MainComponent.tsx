@@ -1,10 +1,14 @@
 import { useState } from 'react'
-import "./MainComponent.css"
+import styled from "styled-components"
 
 import AddIngredient from '@components/AddIngredient';
 import IngredientList from '@components/IngredientList';
 import Recipe from '@components/Recipe';
 import { getRecipeFromChefClaude } from '@ai/ai';
+
+const StyledMain = styled.main`
+    padding: 30px 30px;
+`
 
 function MainComponent() {
     const [ingredients, setIngredients] = useState(["all the main spices", "pasta", "ground beef", "tomato paste"]);
@@ -24,7 +28,7 @@ function MainComponent() {
     }
 
     return (
-        <main>
+        <StyledMain>
             <AddIngredient
                 handleAddIngredient={addIngredient}
             />
@@ -35,7 +39,7 @@ function MainComponent() {
             {(recipe) && <Recipe
                 markdownText={recipe}
             />}
-        </main>
+        </StyledMain>
     );
 }
 
