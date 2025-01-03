@@ -1,0 +1,1 @@
+export function getRecipeFromChefClaude(ingredientsArr: string[]): Promise<string>;

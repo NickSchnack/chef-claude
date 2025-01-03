@@ -4,12 +4,11 @@ import "./MainComponent.css"
 import AddIngredient from '@components/AddIngredient';
 import IngredientList from '@components/IngredientList';
 import Recipe from '@components/Recipe';
-import { getRecipeFromChefClaude } from "@ai/ai.js";
+import { getRecipeFromChefClaude } from '@ai/ai';
 
 function MainComponent() {
     const [ingredients, setIngredients] = useState(["all the main spices", "pasta", "ground beef", "tomato paste"]);
-    const [recipeMarkdown, setRecipeMarkdown] = useState(<p>Based on the ingredients you have available...</p>);
-    const [recipeShown, setRecipeShown] = useState(false);
+    const [recipe, setRecipe] = useState("");
 
     const addIngredient = (formData: FormData) => {
         const formObject = Object.fromEntries(formData)
@@ -19,13 +18,9 @@ function MainComponent() {
         }
     }
 
-    const getRecipe = () => {
-        //onst response = getRecipeFromChefClaude(ingredients);
-        console.log(`Key: ${import.meta.env.VITE_ANTHROPIC_API_KEY}`)
-
-        //console.log(response);
-        //setRecipeMarkdown(response);
-        //setRecipeShown(true);
+    const getRecipe = async () => {
+        const response = await getRecipeFromChefClaude(ingredients);
+        setRecipe(response);
     }
 
     return (
@@ -37,8 +32,8 @@ function MainComponent() {
                 ingredients={ingredients}
                 handleGetRecipe={getRecipe}
             />
-            {(recipeShown) && <Recipe
-                markdownText={recipeMarkdown}
+            {(recipe) && <Recipe
+                markdownText={recipe}
             />}
         </main>
     );
